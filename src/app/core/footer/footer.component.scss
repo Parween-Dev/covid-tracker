@@ -1,0 +1,14 @@
+@import "../../scss-partials/variables";
+
+#footer {
+  background: $primary-color;
+  height: 40px;
+  font-size: 14px;
+  color: #fff;
+  padding: 0;
+
+  .project-by {
+    margin: 0;
+    font-weight: 700;
+  }
+}
