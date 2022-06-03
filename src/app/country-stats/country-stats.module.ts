@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CountryStatsComponent } from './country-stats.component';
 import { CountryRoutingModule } from './country-stats-routing.module';
+import { CovidStatsServices } from '../_services/covid-stats.service';
 
 @NgModule({
     imports: [
@@ -12,6 +13,7 @@ import { CountryRoutingModule } from './country-stats-routing.module';
     ],
     declarations: [
         CountryStatsComponent
-    ]
+    ],
+    providers: [CovidStatsServices],
 })
 export class CountryStatsModule { }
