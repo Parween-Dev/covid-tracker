@@ -1,33 +1,36 @@
-<h1 class="text-center mt-5">Covid-19 Statistics in {{ currentCountry | titlecase }}</h1>
+<div *ngIf="!loading">
+  <h1 class="text-center mt-5">Covid-19 Statistics in {{ currentCountry | titlecase }}</h1>
 
-<app-totals-widgets
-  *ngIf="todayTotals.length"
-  [todayTotals]="todayTotals"
-  [yesterdayTotals]="yesterdayTotals"
-  columnClasses="col-xl-3 col-sm-6 col-12 my-2">
-</app-totals-widgets>
+  <app-totals-widgets
+    *ngIf="todayTotals.length"
+    [todayTotals]="todayTotals"
+    [yesterdayTotals]="yesterdayTotals"
+    columnClasses="col-xl-3 col-sm-6 col-12 my-2">
+  </app-totals-widgets>
 
-<div class="container-fluid row chart-container">
-  <div class="col-xl-6 col-sm-12 col-12 my-2">
-    <app-pie-chart
-      *ngIf="todayTotals.length"
-      [chartLabel]="'Cases Distribution'"
-      [todayTotals]="todayTotals"
-      ></app-pie-chart>
+  <div class="container-fluid row chart-container">
+    <div class="col-xl-6 col-sm-12 col-12 my-2">
+      <app-pie-chart
+        *ngIf="todayTotals.length"
+        [chartLabel]="'Cases Distribution'"
+        [todayTotals]="todayTotals"
+        ></app-pie-chart>
+    </div>
+    <div class=" col-xl-6 col-sm-12 col-12 my-2">
+      <app-bar-chart
+        *ngIf="todayTotals.length && yesterdayTotals.length"
+        [chartLabel]="'Today vs Yesterday Cases'"
+        [todayTotals]="todayTotals"
+        [yesterdayTotals]="yesterdayTotals">
+      </app-bar-chart>
+    </div>
   </div>
-  <div class=" col-xl-6 col-sm-12 col-12 my-2">
-    <app-bar-chart
+  <div class="container-fluid row chart-container my-5">
+    <app-totals-datatable
       *ngIf="todayTotals.length && yesterdayTotals.length"
-      [chartLabel]="'Today vs Yesterday Cases'"
       [todayTotals]="todayTotals"
       [yesterdayTotals]="yesterdayTotals">
-    </app-bar-chart>
+    </app-totals-datatable>
   </div>
 </div>
-<div class="container-fluid row chart-container my-5">
-  <app-totals-datatable
-    *ngIf="todayTotals.length && yesterdayTotals.length"
-    [todayTotals]="todayTotals"
-    [yesterdayTotals]="yesterdayTotals">
-  </app-totals-datatable>
-</div>
+<app-loading-icon *ngIf="loading"></app-loading-icon>

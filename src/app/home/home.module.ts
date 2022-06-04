@@ -4,12 +4,14 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { TotalsWidgetModule } from '../shared/totals-widgets/totals-widgets.module';
 import { CovidStatsServices } from '../_services/covid-stats.service';
+import { LoadingIconModule } from '../shared/loading-icon/loading-icon.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    TotalsWidgetModule
+    TotalsWidgetModule,
+    LoadingIconModule
   ],
   declarations: [HomeComponent],
   providers: [CovidStatsServices],

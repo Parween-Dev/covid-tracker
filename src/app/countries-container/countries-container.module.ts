@@ -12,6 +12,7 @@ import { CountryStatsComponent } from './country-stats/country-stats.component';
 import { PieChartModule } from '../shared/pie-chart/pie-chart.module';
 import { BarChartModule } from '../shared/bar-chart/bar-chart.module';
 import { TotalsWidgetModule } from '../shared/totals-widgets/totals-widgets.module';
+import { LoadingIconModule } from '../shared/loading-icon/loading-icon.module';
 
 @NgModule({
     imports: [
@@ -23,7 +24,8 @@ import { TotalsWidgetModule } from '../shared/totals-widgets/totals-widgets.modu
         PipeModule,
         PieChartModule,
         BarChartModule,
-        TotalsWidgetModule
+        TotalsWidgetModule,
+        LoadingIconModule
     ],
     declarations: [
         CountriesContainerComponent,

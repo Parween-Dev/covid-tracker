@@ -12,6 +12,7 @@ export class CountryStatsComponent implements OnInit {
   public todayTotals: any = [];
   public yesterdayTotals: any = [];
   public currentCountry: string = '';
+  public loading = true;
 
   constructor(
     private covidStatsService: CovidStatsServices,
@@ -35,6 +36,10 @@ export class CountryStatsComponent implements OnInit {
         this.yesterdayTotals = this.convertObjectToArray(yesterday);
       }
     );
+
+    setTimeout(() => {
+      this.loading = false;
+    }, 600);
   }
 
   convertObjectToArray = (data: any) => {

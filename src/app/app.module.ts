@@ -12,6 +12,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgChartsModule } from 'ng2-charts';
 import { HomeModule } from './home/home.module';
 import { TotalsWidgetModule } from './shared/totals-widgets/totals-widgets.module';
+import { LoadingIconModule } from './shared/loading-icon/loading-icon.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TotalsWidgetModule } from './shared/totals-widgets/totals-widgets.modul
     NgxDatatableModule,
     NgChartsModule,
     HomeModule,
-    TotalsWidgetModule
+    TotalsWidgetModule,
+    LoadingIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
