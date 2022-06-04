@@ -1,0 +1,10 @@
+<h1 class="text-center mt-5">Covid-19 Statistics in {{ currentCountry | titlecase }}</h1>
+<app-totals-widgets
+  *ngIf="todayTotals.length"
+  [todayTotals]="todayTotals"
+  [yesterdayTotals]="yesterdayTotals">
+</app-totals-widgets>
+
+<div class="p-5">
+  <p *ngFor="let item of todayTotals">{{ item.label }}: {{ item.value }}</p>
+</div>
