@@ -41,17 +41,27 @@ export class BarChartComponent implements OnChanges {
     DataLabelsPlugin
   ];
 
-  public barChartData: ChartData<'bar'> = {
-    labels: ['Active', 'New Cases', 'New Recovered', 'New Deaths'],
+  private initialData: ChartData<'bar'> = {
+    labels: [],
     datasets: [
       { data: [], label: 'Yesterday' },
       { data: [], label: 'Today' }
     ]
-  };
+  }
+
+  public barChartData!: ChartData<'bar'>;
 
   constructor() { }
 
   ngOnChanges(): void {
+    this.barChartData = {
+      labels: [],
+      datasets: [
+        { data: [], label: 'Yesterday' },
+        { data: [], label: 'Today' }
+      ]
+    };
+    this.barChartData.labels = ['Active', 'New Cases', 'New Recovered', 'New Deaths'];
     this.chartItems?.forEach((item: any) => {
       this.barChartData.datasets[0].data.push(this.yesterdayTotals.find(({ label }: any) => label === item).value);
       this.barChartData.datasets[1].data.push(this.todayTotals.find(({ label }: any) => label === item).value);

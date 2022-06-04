@@ -30,12 +30,7 @@ export class PieChartComponent implements OnChanges {
     }
   };
 
-  public pieChartData: ChartData<'pie', number[], string | string[]> = {
-    labels: [],
-    datasets: [{
-      data: []
-    }]
-  };
+  public pieChartData!: ChartData<'pie', number[], string | string[]>;
 
   public pieChartType: ChartType = 'pie';
   public pieChartPlugins = [DatalabelsPlugin];
@@ -43,7 +38,14 @@ export class PieChartComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges(): void {
-        this.todayTotals.map(({ label, value }: any) => {
+    this.pieChartData = {
+      labels: [],
+      datasets: [{
+        data: []
+      }]
+    };
+
+    this.todayTotals.map(({ label, value }: any) => {
       if (this.chartItems.includes(label)) {
         this.pieChartData.labels?.push(capitalizeString(label));
         this.pieChartData.datasets[0]?.data?.push(value);
