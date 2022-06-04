@@ -12,4 +12,8 @@ export class CovidStatsServices {
   public getTotalsByCountry(country: string, day: 'yesterday' | 'twoDaysAgo'): Observable<any> {
     return this.http.get<any>(`${this.apiURL}/v3/covid-19/countries/${country}?${day}=true`);
   }
+
+  public getWorldTotals(day: 'yesterday' | 'twoDaysAgo'): Observable<any> {
+    return this.http.get<any>(`${this.apiURL}/v3/covid-19/all?${day}=true`);
+  }
 }
