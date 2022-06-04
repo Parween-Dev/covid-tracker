@@ -1,0 +1,15 @@
+@import "../../scss-partials/variables";
+
+:host ::ng-deep .ngx-datatable.bootstrap {
+  border: 1px solid #d1d4d7;
+
+  .datatable-header {
+    background-color: $primary-color;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .datatable-body-cell {
+    background-color: #fff;
+  }
+}

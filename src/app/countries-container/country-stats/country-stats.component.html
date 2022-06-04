@@ -16,14 +16,17 @@
   </div>
   <div class="col-xl-6 col-sm-12 col-12">
     <app-bar-chart
-      *ngIf="todayTotals.length"
+      *ngIf="todayTotals.length && yesterdayTotals.length"
       [chartLabel]="'Today vs Yesterday Cases'"
       [todayTotals]="todayTotals"
       [yesterdayTotals]="yesterdayTotals">
     </app-bar-chart>
   </div>
 </div>
-
-<div class="p-5">
-  <p *ngFor="let item of todayTotals">{{ item.label }}: {{ item.value }}</p>
+<div class="container-fluid row chart-container my-5">
+  <app-totals-datatable
+    *ngIf="todayTotals.length && yesterdayTotals.length"
+    [todayTotals]="todayTotals"
+    [yesterdayTotals]="yesterdayTotals">
+  </app-totals-datatable>
 </div>
