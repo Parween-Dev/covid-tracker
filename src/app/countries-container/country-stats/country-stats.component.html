@@ -4,18 +4,18 @@
   *ngIf="todayTotals.length"
   [todayTotals]="todayTotals"
   [yesterdayTotals]="yesterdayTotals"
-  columnClasses="col-xl-3 col-sm-6 col-12">
+  columnClasses="col-xl-3 col-sm-6 col-12 my-2">
 </app-totals-widgets>
 
 <div class="container-fluid row chart-container">
-  <div class="col-xl-6 col-sm-12 col-12">
+  <div class="col-xl-6 col-sm-12 col-12 my-2">
     <app-pie-chart
       *ngIf="todayTotals.length"
       [chartLabel]="'Cases Distribution'"
       [todayTotals]="todayTotals"
       ></app-pie-chart>
   </div>
-  <div class="col-xl-6 col-sm-12 col-12">
+  <div class=" col-xl-6 col-sm-12 col-12 my-2">
     <app-bar-chart
       *ngIf="todayTotals.length && yesterdayTotals.length"
       [chartLabel]="'Today vs Yesterday Cases'"
