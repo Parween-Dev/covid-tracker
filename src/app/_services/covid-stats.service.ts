@@ -9,7 +9,7 @@ export class CovidStatsServices {
 
   constructor(private http: HttpClient) {}
 
-  public getTotalsByCountry(country: string): Observable<any> {
-    return this.http.get<any>(`${this.apiURL}/v3/covid-19/countries/${country}`);
+  public getTotalsByCountry(country: string, day: 'yesterday' | 'twoDaysAgo'): Observable<any> {
+    return this.http.get<any>(`${this.apiURL}/v3/covid-19/countries/${country}?${day}=true`);
   }
 }
