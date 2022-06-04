@@ -1,12 +1,12 @@
 <div id="header" class="d-flex align-items-center">
   <div class="container d-flex align-items-center justify-content-between">
-    <a [routerLink]="['/home']">
+    <a routerLink="/home">
       <img class="logo" src="../../../assets/images/coronavirus_icon.png" alt="corona virus icon">
     </a>
     <nav class="navbar">
       <ul>
-        <li><a class="nav-link" [routerLink]="['/world']" routerLinkActive="active">World</a></li>
-        <li><a class="nav-link" [routerLink]="['/countries/malaysia']" routerLinkActive="active">Malaysia</a></li>
+        <li><a class="nav-link" routerLink="/world" routerLinkActive="active">World</a></li>
+        <li><a class="nav-link" routerLink="/countries/malaysia" routerLinkActive="active">Malaysia</a></li>
       </ul>
     </nav>
   </div>
