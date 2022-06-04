@@ -1,7 +1,8 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { ChartData, ChartType } from 'chart.js';
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import { BaseChartDirective } from 'ng2-charts';
+import { capitalizeString } from 'src/app/_libraries/capitalize-string';
 
 @Component({
   selector: 'app-pie-chart',
@@ -44,7 +45,7 @@ export class PieChartComponent implements OnChanges {
   ngOnChanges(): void {
         this.todayTotals.map(({ label, value }: any) => {
       if (this.chartItems.includes(label)) {
-        this.pieChartData.labels?.push(label);
+        this.pieChartData.labels?.push(capitalizeString(label));
         this.pieChartData.datasets[0]?.data?.push(value);
       }
     })
