@@ -11,6 +11,7 @@ import { PipeModule } from '../_pipes/pipe.module';
 import { CountriesContainerComponent } from './countries-container.component';
 import { CountryStatsComponent } from './country-stats/country-stats.component';
 import { PieChartModule } from '../shared/pie-chart/pie-chart.module';
+import { BarChartModule } from '../shared/bar-chart/bar-chart.module';
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import { PieChartModule } from '../shared/pie-chart/pie-chart.module';
         NgbModule,
         NgxDatatableModule,
         PipeModule,
-        PieChartModule
+        PieChartModule,
+        BarChartModule
     ],
     declarations: [
         CountriesContainerComponent,

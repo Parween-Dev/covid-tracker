@@ -10,6 +10,7 @@ import { TotalsDatatableComponent } from '../totals-datatable/totals-datatable.c
 import { TotalsWidgetsComponent } from '../totals-widgets/totals-widgets.component';
 import { CountryStatsComponent } from './country-stats.component';
 import { PieChartModule } from 'src/app/shared/pie-chart/pie-chart.module';
+import { BarChartModule } from 'src/app/shared/bar-chart/bar-chart.module';
 
 @NgModule({
     imports: [
@@ -18,7 +19,8 @@ import { PieChartModule } from 'src/app/shared/pie-chart/pie-chart.module';
         NgbModule,
         NgxDatatableModule,
         PipeModule,
-        PieChartModule
+        PieChartModule,
+        BarChartModule
     ],
     declarations: [
         CountriesContainerComponent,

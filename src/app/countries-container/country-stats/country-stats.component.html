@@ -6,13 +6,21 @@
   [yesterdayTotals]="yesterdayTotals">
 </app-totals-widgets>
 
-<div class="container-fluid mt-5 px-5">
-  <div class="row">
+<div class="container-fluid row chart-container">
+  <div class="col-xl-6 col-sm-12 col-12">
     <app-pie-chart
       *ngIf="todayTotals.length"
       [chartLabel]="'Cases Distribution'"
       [todayTotals]="todayTotals"
       ></app-pie-chart>
+  </div>
+  <div class="col-xl-6 col-sm-12 col-12">
+    <app-bar-chart
+      *ngIf="todayTotals.length"
+      [chartLabel]="'Today vs Yesterday Cases'"
+      [todayTotals]="todayTotals"
+      [yesterdayTotals]="yesterdayTotals">
+    </app-bar-chart>
   </div>
 </div>
 
