@@ -8,6 +8,7 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 export class TotalsWidgetsComponent implements OnInit, OnChanges {
   @Input() todayTotals: any;
   @Input() yesterdayTotals: any;
+  @Input() columnClasses!: string;
   public todayOverview: any;
   public yesterdayOverview: any;
   private widgetItems = ['cases', 'deaths', 'recovered', 'active'];

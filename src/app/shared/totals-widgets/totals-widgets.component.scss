@@ -1,0 +1,28 @@
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.difference {
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+@media (min-width: 1200px) and (max-width: 1440px)  {
+  .widget {
+    flex-direction: column;
+    justify-content: center !important;
+    text-align: center;
+  }
+}
+
+@media (max-width: 1200px) {
+  .widget {
+    flex-direction: row;
+    justify-content: space-between !important;
+    text-align: left;
+  }
+}

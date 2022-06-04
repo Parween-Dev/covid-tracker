@@ -6,18 +6,18 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
-import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgChartsModule } from 'ng2-charts';
+import { HomeModule } from './home/home.module';
+import { TotalsWidgetModule } from './shared/totals-widgets/totals-widgets.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
-    HomeComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +26,9 @@ import { NgChartsModule } from 'ng2-charts';
     HttpClientModule,
     BrowserAnimationsModule,
     NgxDatatableModule,
-    NgChartsModule
+    NgChartsModule,
+    HomeModule,
+    TotalsWidgetModule
   ],
   providers: [],
   bootstrap: [AppComponent]
