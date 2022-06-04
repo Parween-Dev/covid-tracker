@@ -1,0 +1,20 @@
+@import "../scss-partials/variables";
+
+.hero {
+  height: calc(100vh - 120px);
+  background-color: #F8F4EC/* #F8F4EC */ /* #fff1e6 */;
+}
+
+img {
+  width: 600px;
+}
+
+.title {
+  font-size: 84px;
+  color: #222841;
+  padding-left: 50px;
+}
+
+.highlight {
+  color: $primary-color;
+}
