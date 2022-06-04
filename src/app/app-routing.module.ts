@@ -5,7 +5,7 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'world', loadChildren: () => import('./world-stats/world-stats.module').then(m => m.WorldStatsModule) },
-  { path: 'countries', loadChildren: () => import('./country-stats/country-stats.module').then(m => m.CountryStatsModule) },
+  { path: 'countries', loadChildren: () => import('./countries-container/countries-container.module').then(m => m.CountriesContainerModule) },
   { path: '**', component: HomeComponent }
 ];
 
