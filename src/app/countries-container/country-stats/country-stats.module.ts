@@ -9,6 +9,7 @@ import { CountriesContainerComponent } from '../countries-container.component';
 import { TotalsDatatableComponent } from '../totals-datatable/totals-datatable.component';
 import { TotalsWidgetsComponent } from '../totals-widgets/totals-widgets.component';
 import { CountryStatsComponent } from './country-stats.component';
+import { PieChartModule } from 'src/app/shared/pie-chart/pie-chart.module';
 
 @NgModule({
     imports: [
@@ -16,7 +17,8 @@ import { CountryStatsComponent } from './country-stats.component';
         RouterModule,
         NgbModule,
         NgxDatatableModule,
-        PipeModule
+        PipeModule,
+        PieChartModule
     ],
     declarations: [
         CountriesContainerComponent,

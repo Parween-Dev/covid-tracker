@@ -1,9 +1,20 @@
 <h1 class="text-center mt-5">Covid-19 Statistics in {{ currentCountry | titlecase }}</h1>
+
 <app-totals-widgets
   *ngIf="todayTotals.length"
   [todayTotals]="todayTotals"
   [yesterdayTotals]="yesterdayTotals">
 </app-totals-widgets>
+
+<div class="container-fluid mt-5 px-5">
+  <div class="row">
+    <app-pie-chart
+      *ngIf="todayTotals.length"
+      [chartLabel]="'Cases Distribution'"
+      [todayTotals]="todayTotals"
+      ></app-pie-chart>
+  </div>
+</div>
 
 <div class="p-5">
   <p *ngFor="let item of todayTotals">{{ item.label }}: {{ item.value }}</p>

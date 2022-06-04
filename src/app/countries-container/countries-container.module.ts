@@ -10,6 +10,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { PipeModule } from '../_pipes/pipe.module';
 import { CountriesContainerComponent } from './countries-container.component';
 import { CountryStatsComponent } from './country-stats/country-stats.component';
+import { PieChartModule } from '../shared/pie-chart/pie-chart.module';
 
 @NgModule({
     imports: [
@@ -18,7 +19,8 @@ import { CountryStatsComponent } from './country-stats/country-stats.component';
         CountryRoutingModule,
         NgbModule,
         NgxDatatableModule,
-        PipeModule
+        PipeModule,
+        PieChartModule
     ],
     declarations: [
         CountriesContainerComponent,

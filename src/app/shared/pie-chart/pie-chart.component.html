@@ -1,0 +1,17 @@
+<div class="col-xl-6 col-sm-12 col-12">
+  <div class="card shadow border-0">
+    <div class="card-content">
+      <div class="card-body">
+        <h2 class="text-center mb-5">{{ chartLabel }}</h2>
+        <div class="chart">
+          <canvas baseChart
+                  [data]="pieChartData"
+                  [type]="pieChartType"
+                  [options]="pieChartOptions"
+                  [plugins]="pieChartPlugins">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
