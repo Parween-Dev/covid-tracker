@@ -41,14 +41,6 @@ export class BarChartComponent implements OnChanges {
     DataLabelsPlugin
   ];
 
-  private initialData: ChartData<'bar'> = {
-    labels: [],
-    datasets: [
-      { data: [], label: 'Yesterday' },
-      { data: [], label: 'Today' }
-    ]
-  }
-
   public barChartData!: ChartData<'bar'>;
 
   constructor() { }
