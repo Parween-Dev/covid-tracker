@@ -27,13 +27,14 @@
     </div>
   </div>
 
-  <h3 class="text-center mt-5">Statistics based on Country</h3>
-  <p class="text-center">Click on a country name to view more data</p>
-  <div class="container-fluid row chart-container my-5">
-    <app-world-datatable
-      *ngIf="totalsByCountry.length"
-      [totalsByCountry]="totalsByCountry">
-    </app-world-datatable>
+  <div *ngIf="totalsByCountry.length >= 228">
+    <h3 class="text-center mt-5">Statistics based on Country</h3>
+    <p class="text-center">Click on a country name to view more data</p>
+    <div class="container-fluid row chart-container my-5">
+      <app-world-datatable
+        [totalsByCountry]="totalsByCountry">
+      </app-world-datatable>
+    </div>
   </div>
 </div>
 <app-loading-icon *ngIf="loading"></app-loading-icon>
