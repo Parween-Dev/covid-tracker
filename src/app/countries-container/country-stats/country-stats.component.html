@@ -1,4 +1,11 @@
 <div *ngIf="!loading">
+  <marquee class="d-flex align-items-center" width="100%" direction="left" height="50px"
+    *ngIf="newsList.length && currentCountry === 'malaysia'">
+      <span><b>Malaysia Latest News: </b></span>
+      <a class="news" *ngFor="let news of newsList" href="https://www.malaysiakini.com/news/{{news['sid']}}" target="_blank">
+        {{ news['title'] }}
+      </a>
+    </marquee>
   <h1 class="text-center mt-5">Covid-19 Statistics in {{ currentCountry | titlecase }}</h1>
 
   <app-totals-widgets

@@ -18,4 +18,8 @@ export class CovidStatsServices {
   public getWorldTotals(day: 'yesterday' | 'twoDaysAgo'): Observable<IWorldStats> {
     return this.http.get<IWorldStats>(`${this.apiURL}/v3/covid-19/all?${day}=true`);
   }
+
+  public getNews(): Observable<any> {
+    return this.http.get<any>(`https://www.malaysiakini.com/en/tag/covid-19?alt=json`);
+  }
 }

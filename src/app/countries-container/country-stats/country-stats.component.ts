@@ -16,6 +16,7 @@ export class CountryStatsComponent implements OnInit, OnDestroy {
   public yesterdayTotals: ITotals[] = [];
   public currentCountry: string = '';
   public loading = true;
+  public newsList = [];
 
   private subs = new SubSink;
 
@@ -30,6 +31,7 @@ export class CountryStatsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.covidStatsService.getNews().subscribe(data => this.newsList = data);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
