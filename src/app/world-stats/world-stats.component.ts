@@ -18,6 +18,7 @@ export class WorldStatsComponent implements OnInit, OnDestroy {
   public currentCountry: string = '';
   public loading = true;
   public totalsByCountry: any[] = [];
+  public error: boolean = false;
 
   private removedItems = ['updated', 'countryInfo', 'continent'];
   private subs = new SubSink;
@@ -37,7 +38,9 @@ export class WorldStatsComponent implements OnInit, OnDestroy {
       ]).subscribe(([today, yesterday]) => {
         this.todayTotals = this.convertObjectToArray(today);
         this.yesterdayTotals = this.convertObjectToArray(yesterday);
-      })
+      },
+        () => this.error = true
+      )
     );
 
     setTimeout(() => {

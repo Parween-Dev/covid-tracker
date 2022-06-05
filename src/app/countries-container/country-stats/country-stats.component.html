@@ -6,6 +6,7 @@
         {{ news['title'] }}
       </a>
     </marquee>
+    <app-alert [error]="error"></app-alert>
   <h1 class="text-center mt-5">Covid-19 Statistics in {{ currentCountry | titlecase }}</h1>
 
   <app-totals-widgets

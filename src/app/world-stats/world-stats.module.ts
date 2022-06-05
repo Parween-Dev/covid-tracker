@@ -10,6 +10,7 @@ import { PieChartModule } from '../shared/pie-chart/pie-chart.module';
 import { BarChartModule } from '../shared/bar-chart/bar-chart.module';
 import { WorldDatatableModule } from './world-datatable/world-datatable.module';
 import { NgxDatatableFooterModule } from 'ngx-datatable-footer';
+import { AlertModule } from '../shared/alert/alert.module';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import { NgxDatatableFooterModule } from 'ngx-datatable-footer';
         PieChartModule,
         BarChartModule,
         WorldDatatableModule,
-        NgxDatatableFooterModule
+        NgxDatatableFooterModule,
+        AlertModule
     ],
     declarations: [
         WorldStatsComponent

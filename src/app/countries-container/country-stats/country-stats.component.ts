@@ -17,6 +17,7 @@ export class CountryStatsComponent implements OnInit, OnDestroy {
   public currentCountry: string = '';
   public loading = true;
   public newsList = [];
+  public error: boolean = false;
 
   private subs = new SubSink;
 
@@ -27,11 +28,16 @@ export class CountryStatsComponent implements OnInit, OnDestroy {
     this.activatedRoute.url.subscribe(url => {
       this.currentCountry = url[0].path;
       this.getCountryData();
-    });
+    },
+      () => this.error = true
+    );
   }
 
   ngOnInit(): void {
-    this.covidStatsService.getNews().subscribe(data => this.newsList = data);
+    this.covidStatsService.getNews().subscribe(
+      data => this.newsList = data,
+      () => this.error = true
+    );
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -43,7 +49,8 @@ export class CountryStatsComponent implements OnInit, OnDestroy {
       ]).subscribe(([today, yesterday]: [ICountryStats, ICountryStats]) => {
         this.todayTotals = this.convertObjectToArray(today);
         this.yesterdayTotals = this.convertObjectToArray(yesterday);
-      }
+      },
+      () => this.error = true
       )
     );
 

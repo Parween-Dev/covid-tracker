@@ -16,6 +16,7 @@ export class CountriesContainerComponent implements OnInit, OnDestroy {
   public todayTotals: ITotals[] = [];
   public yesterdayTotals: ITotals[] = [];
   public currentCountry: string = '';
+  public error: boolean = false;
 
   private subs = new SubSink;
 
@@ -34,8 +35,9 @@ export class CountriesContainerComponent implements OnInit, OnDestroy {
       ]).subscribe(([today, yesterday]: [ICountryStats, ICountryStats]) => {
         this.todayTotals = this.convertObjectToArray(today);
         this.yesterdayTotals = this.convertObjectToArray(yesterday);
-      }
-      )
+      },
+        () => this.error = true
+      ),
     );
   }
 

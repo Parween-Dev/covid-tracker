@@ -13,6 +13,7 @@ import { BarChartModule } from '../shared/bar-chart/bar-chart.module';
 import { TotalsWidgetModule } from '../shared/totals-widgets/totals-widgets.module';
 import { LoadingIconModule } from '../shared/loading-icon/loading-icon.module';
 import { TotalsDatatableModule } from './totals-datatable/totals-datatable.module';
+import { AlertModule } from '../shared/alert/alert.module';
 
 @NgModule({
     imports: [
@@ -26,7 +27,8 @@ import { TotalsDatatableModule } from './totals-datatable/totals-datatable.modul
         BarChartModule,
         TotalsWidgetModule,
         LoadingIconModule,
-        TotalsDatatableModule
+        TotalsDatatableModule,
+        AlertModule
     ],
     declarations: [
         CountriesContainerComponent,
