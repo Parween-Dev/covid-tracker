@@ -14,7 +14,6 @@ import { HomeModule } from './home/home.module';
 import { TotalsWidgetModule } from './shared/totals-widgets/totals-widgets.module';
 import { LoadingIconModule } from './shared/loading-icon/loading-icon.module';
 import { HighchartsChartModule } from 'highcharts-angular';
-import { NgxDatatableFooterModule } from 'ngx-datatable-footer';
 
 @NgModule({
   declarations: [
