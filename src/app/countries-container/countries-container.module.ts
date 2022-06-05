@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CountryRoutingModule } from './countries-container-routing.module';
 import { CovidStatsServices } from '../_services/covid-stats.service';
-import { TotalsDatatableComponent } from './totals-datatable/totals-datatable.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { PipeModule } from '../_pipes/pipe.module';
@@ -13,6 +12,7 @@ import { PieChartModule } from '../shared/pie-chart/pie-chart.module';
 import { BarChartModule } from '../shared/bar-chart/bar-chart.module';
 import { TotalsWidgetModule } from '../shared/totals-widgets/totals-widgets.module';
 import { LoadingIconModule } from '../shared/loading-icon/loading-icon.module';
+import { TotalsDatatableModule } from './totals-datatable/totals-datatable.module';
 
 @NgModule({
     imports: [
@@ -25,11 +25,11 @@ import { LoadingIconModule } from '../shared/loading-icon/loading-icon.module';
         PieChartModule,
         BarChartModule,
         TotalsWidgetModule,
-        LoadingIconModule
+        LoadingIconModule,
+        TotalsDatatableModule
     ],
     declarations: [
         CountriesContainerComponent,
-        TotalsDatatableComponent,
         CountryStatsComponent
     ],
     providers: [CovidStatsServices],

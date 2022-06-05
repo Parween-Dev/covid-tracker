@@ -4,12 +4,13 @@ import { TotalsDatatableComponent } from './totals-datatable.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        NgxDatatableModule
-    ],
-    declarations: [
-        TotalsDatatableComponent
-    ]
+  imports: [
+    CommonModule,
+    NgxDatatableModule
+  ],
+  declarations: [
+    TotalsDatatableComponent
+  ],
+  exports: [TotalsDatatableComponent]
 })
 export class TotalsDatatableModule { }
