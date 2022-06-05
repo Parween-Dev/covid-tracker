@@ -25,6 +25,7 @@ export class CountryStatsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   getCountryData = () => {

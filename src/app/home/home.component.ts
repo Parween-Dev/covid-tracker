@@ -8,8 +8,8 @@ import { CovidStatsServices } from '../_services/covid-stats.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  todayTotals: any;
-  yesterdayTotals: any;
+  todayTotals: any = [];
+  yesterdayTotals: any = [];
 
   constructor(private covidStatsServices: CovidStatsServices) {}
 
