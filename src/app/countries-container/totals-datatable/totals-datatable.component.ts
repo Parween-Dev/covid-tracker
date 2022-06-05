@@ -17,18 +17,18 @@ export class TotalsDatatableComponent implements OnChanges {
   columns = [{ prop: 'metrics' }, { name: 'Yesterday' }, { name: 'Today' }];
   removedItems = ['updated', 'country', 'countryInfo', 'continent'];
 
-  constructor() {}
+  constructor() { }
 
   ngOnChanges(): void {
     this.rows = this.todayTotals
       .filter(({ label }: any) => !this.removedItems.includes(label))
       .map(({ label, value }: any) => {
-      return {
-        metrics: capitalizeString(label.split(/(?=[A-Z])/).join(' ')),
-        today: value,
-        yesterday: this.yesterdayTotals.find((item: any) => item.label === label).value
-      }
-    })
+        return {
+          metrics: capitalizeString(label.split(/(?=[A-Z])/).join(' ')),
+          today: value,
+          yesterday: this.yesterdayTotals.find((item: any) => item.label === label).value
+        }
+      })
   }
 
   updateFilter(event: any) {

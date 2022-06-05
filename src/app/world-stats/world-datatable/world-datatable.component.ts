@@ -21,7 +21,7 @@ export class WorldDatatableComponent implements OnInit {
     promotionsData: [],
     rowCount: 0,
     limit: 10,
-    sorts: [{prop: 'country', dir: 'asc'}],
+    sorts: [{ prop: 'country', dir: 'asc' }],
     offset: 0,
   };
 
@@ -33,18 +33,18 @@ export class WorldDatatableComponent implements OnInit {
     this.rows = this.totalsByCountry
       .filter((item: any) => !this.removedItems.includes(item))
       .map((item: any) => {
-      return {
-        country: capitalizeString((item.country).split(/(?=[A-Z])/).join(' ')),
-        ...item
-      }
-    });
+        return {
+          country: capitalizeString((item.country).split(/(?=[A-Z])/).join(' ')),
+          ...item
+        }
+      });
   }
 
   getColumns = () => {
     Object.entries(this.totalsByCountry[0])
-      .filter(([ key, value ]: any) => !this.removedItems.includes(key) && key !== 'country')
-      .forEach(([ key, value ]: any) => {
-        this.columns.push({  name: capitalizeString(key).split(/(?=[A-Z])/).join(' ') });
+      .filter(([key, value]: any) => !this.removedItems.includes(key) && key !== 'country')
+      .forEach(([key, value]: any) => {
+        this.columns.push({ name: capitalizeString(key).split(/(?=[A-Z])/).join(' ') });
       });
   }
 
@@ -60,7 +60,7 @@ export class WorldDatatableComponent implements OnInit {
   }
 
   formatString = (str: string) => {
-    return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
+    return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
       return index === 0 ? word.toLowerCase() : word.toUpperCase();
     }).replace(/\s+/g, '');
   }

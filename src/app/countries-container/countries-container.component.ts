@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
+import { SubSink } from 'subsink';
 import { CovidStatsServices } from '../_services/covid-stats.service';
 
 @Component({
@@ -8,11 +9,13 @@ import { CovidStatsServices } from '../_services/covid-stats.service';
   templateUrl: './countries-container.component.html',
   styleUrls: ['./countries-container.component.scss']
 })
-export class CountriesContainerComponent implements OnInit {
+export class CountriesContainerComponent implements OnInit, OnDestroy {
 
   public todayTotals: any = [];
   public yesterdayTotals: any = [];
   public currentCountry: string = '';
+
+  private subs = new SubSink;
 
   constructor(
     private covidStatsService: CovidStatsServices,
@@ -22,22 +25,28 @@ export class CountriesContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    combineLatest([
-      this.covidStatsService.getTotalsByCountry(this.currentCountry, 'yesterday'),
-      this.covidStatsService.getTotalsByCountry(this.currentCountry, 'twoDaysAgo')
-    ]).subscribe(([ today, yesterday ]) => {
+    this.subs.add(
+      combineLatest([
+        this.covidStatsService.getTotalsByCountry(this.currentCountry, 'yesterday'),
+        this.covidStatsService.getTotalsByCountry(this.currentCountry, 'twoDaysAgo')
+      ]).subscribe(([today, yesterday]) => {
         this.todayTotals = this.convertObjectToArray(today);
         this.yesterdayTotals = this.convertObjectToArray(yesterday);
       }
+      )
     );
   }
 
   convertObjectToArray = (data: any) => {
-    return Object.entries(data).map(([ key, value ]) => {
+    return Object.entries(data).map(([key, value]) => {
       return {
         label: key,
         value: value
       }
-    })
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 }

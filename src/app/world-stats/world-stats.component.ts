@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { catchError, combineLatest, of } from 'rxjs';
+import { SubSink } from 'subsink';
 import { countryList } from '../_constants/country-list';
 import { CovidStatsServices } from '../_services/covid-stats.service';
 
@@ -8,13 +9,15 @@ import { CovidStatsServices } from '../_services/covid-stats.service';
   templateUrl: './world-stats.component.html',
   styleUrls: ['./world-stats.component.scss']
 })
-export class WorldStatsComponent implements OnInit {
+export class WorldStatsComponent implements OnInit, OnDestroy {
   public todayTotals: any = [];
   public yesterdayTotals: any = [];
   public currentCountry: string = '';
   public loading = true;
   public totalsByCountry: any[] = [];
+
   private removedItems = ['updated', 'countryInfo', 'continent'];
+  private subs = new SubSink;
 
   constructor(private covidStatsService: CovidStatsServices) { }
 
@@ -24,13 +27,14 @@ export class WorldStatsComponent implements OnInit {
   }
 
   getWorldData = () => {
-    combineLatest([
-      this.covidStatsService.getWorldTotals('yesterday'),
-      this.covidStatsService.getWorldTotals('twoDaysAgo')
-    ]).subscribe(([today, yesterday]) => {
-      this.todayTotals = this.convertObjectToArray(today);
-      this.yesterdayTotals = this.convertObjectToArray(yesterday);
-    }
+    this.subs.add(
+      combineLatest([
+        this.covidStatsService.getWorldTotals('yesterday'),
+        this.covidStatsService.getWorldTotals('twoDaysAgo')
+      ]).subscribe(([today, yesterday]) => {
+        this.todayTotals = this.convertObjectToArray(today);
+        this.yesterdayTotals = this.convertObjectToArray(yesterday);
+      })
     );
 
     setTimeout(() => {
@@ -40,16 +44,18 @@ export class WorldStatsComponent implements OnInit {
 
   getEveryCountryData = () => {
     Object.keys(countryList).forEach(countryCode => {
-      this.covidStatsService.getTotalsByCountry(countryCode, 'yesterday')
-        .pipe(catchError(() => of({})))
-        .subscribe(data => {
-          if (Object.keys(data).length) {
-            this.totalsByCountry = [
-              ...this.totalsByCountry,
-              data
-            ];
-          }
-        });
+      this.subs.add(
+        this.covidStatsService.getTotalsByCountry(countryCode, 'yesterday')
+          .pipe(catchError(() => of({})))
+          .subscribe(data => {
+            if (Object.keys(data).length) {
+              this.totalsByCountry = [
+                ...this.totalsByCountry,
+                data
+              ];
+            }
+          })
+      );
     });
   }
 
@@ -62,6 +68,10 @@ export class WorldStatsComponent implements OnInit {
           value: value
         }
       })
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 
 }
