@@ -54,6 +54,10 @@
   background-color: $secondary-color;
   padding-left: 50px;
 
+  .card {
+    max-width: 300px;
+  }
+
   img {
     max-width: 190px;
   }
