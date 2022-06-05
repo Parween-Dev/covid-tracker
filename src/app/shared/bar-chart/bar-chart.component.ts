@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartType, ChartData } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
+import { ITotals } from 'src/app/_interface/totals.interface';
 
 @Component({
   selector: 'app-bar-chart',
@@ -10,9 +11,9 @@ import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 })
 export class BarChartComponent implements OnChanges {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
-  @Input() chartLabel?: string;
-  @Input() todayTotals?: any;
-  @Input() yesterdayTotals?: any;
+  @Input() chartLabel!: string;
+  @Input() todayTotals!: any[];
+  @Input() yesterdayTotals!: any[];
 
   private chartItems = ['active', 'todayCases', 'todayRecovered', 'todayDeaths'];
 
@@ -54,9 +55,9 @@ export class BarChartComponent implements OnChanges {
       ]
     };
     this.barChartData.labels = ['Active', 'New Cases', 'New Recovered', 'New Deaths'];
-    this.chartItems?.forEach((item: any) => {
-      this.barChartData.datasets[0].data.push(this.yesterdayTotals.find(({ label }: any) => label === item).value);
-      this.barChartData.datasets[1].data.push(this.todayTotals.find(({ label }: any) => label === item).value);
+    this.chartItems.forEach((item: string) => {
+      this.barChartData.datasets[0].data.push(this.yesterdayTotals.find(({ label }) => label === item)?.value);
+      this.barChartData.datasets[1].data.push(this.todayTotals.find(({ label }) => label === item)?.value);
     });
   }
 }

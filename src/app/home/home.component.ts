@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { combineLatest } from 'rxjs';
 import { SubSink } from 'subsink';
+import { ITotals } from '../_interface/totals.interface';
+import { IWorldStats } from '../_interface/world-stats.interface';
 import { CovidStatsServices } from '../_services/covid-stats.service';
 
 @Component({
@@ -9,8 +11,8 @@ import { CovidStatsServices } from '../_services/covid-stats.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  todayTotals: any = [];
-  yesterdayTotals: any = [];
+  todayTotals: ITotals[] = [];
+  yesterdayTotals: ITotals[] = [];
 
   private subs = new SubSink;
 
@@ -25,7 +27,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       combineLatest([
         this.covidStatsServices.getWorldTotals('yesterday'),
         this.covidStatsServices.getWorldTotals('twoDaysAgo')
-      ]).subscribe(([today, yesterday]) => {
+      ]).subscribe(([today, yesterday]: [IWorldStats, IWorldStats]) => {
         this.todayTotals = this.convertObjectToArray(today);
         this.yesterdayTotals = this.convertObjectToArray(yesterday);
       }
@@ -33,7 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  convertObjectToArray = (data: any) => {
+  convertObjectToArray = (data: IWorldStats) => {
     return Object.entries(data).map(([key, value]) => {
       return {
         label: key,

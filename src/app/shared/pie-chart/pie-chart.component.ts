@@ -12,7 +12,7 @@ import { capitalizeString } from 'src/app/_libraries/capitalize-string';
 export class PieChartComponent implements OnChanges {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
   @Input() chartLabel?: string;
-  @Input() todayTotals?: any;
+  @Input() todayTotals?: any[];
 
   private chartItems = ['active', 'recovered', 'deaths'];
 
@@ -45,7 +45,7 @@ export class PieChartComponent implements OnChanges {
       }]
     };
 
-    this.todayTotals.map(({ label, value }: any) => {
+    this.todayTotals?.map(({ label, value }) => {
       if (this.chartItems.includes(label)) {
         this.pieChartData.labels?.push(capitalizeString(label));
         this.pieChartData.datasets[0]?.data?.push(value);

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
+import { ICountryStats } from 'src/app/_interface/country-stats.interface';
+import { IDatatable } from 'src/app/_interface/datatable.interface';
 import { capitalizeString } from 'src/app/_libraries/capitalize-string';
 
 @Component({
@@ -9,16 +11,14 @@ import { capitalizeString } from 'src/app/_libraries/capitalize-string';
 })
 export class WorldDatatableComponent implements OnInit {
   @ViewChild(DatatableComponent) table!: DatatableComponent;
-  @Input() totalsByCountry: any;
+  @Input() totalsByCountry!: ICountryStats[];
 
-  rows: any[] = [];
-  temp: any[] = [];
-  columns: any = [{ prop: 'country' }];
+  rows: IDatatable[] = [];
+  temp: IDatatable[] = [];
+  columns: any[] = [{ prop: 'country' }];
   removedItems = ['updated', 'countryInfo', 'continent'];
 
   public tableData = {
-    columns: [],
-    promotionsData: [],
     rowCount: 0,
     limit: 10,
     sorts: [{ prop: 'country', dir: 'asc' }],
@@ -44,19 +44,8 @@ export class WorldDatatableComponent implements OnInit {
     Object.entries(this.totalsByCountry[0])
       .filter(([key, value]: any) => !this.removedItems.includes(key) && key !== 'country')
       .forEach(([key, value]: any) => {
-        this.columns.push({ name: capitalizeString(key).split(/(?=[A-Z])/).join(' ') });
+        this.columns = [...this.columns, { name: capitalizeString(key).split(/(?=[A-Z])/).join(' ') }];
       });
-  }
-
-  updateFilter(event: any) {
-    const val = event.target.value.toLowerCase();
-
-    const temp = this.temp.filter(function (d) {
-      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
-    });
-
-    this.rows = temp;
-    this.table.offset = 0;
   }
 
   formatString = (str: string) => {

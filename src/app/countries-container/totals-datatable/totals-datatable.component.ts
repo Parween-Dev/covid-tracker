@@ -1,5 +1,7 @@
 import { Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
+import { IDatatable } from 'src/app/_interface/datatable.interface';
+import { ITotals } from 'src/app/_interface/totals.interface';
 import { capitalizeString } from 'src/app/_libraries/capitalize-string';
 
 @Component({
@@ -9,11 +11,11 @@ import { capitalizeString } from 'src/app/_libraries/capitalize-string';
 })
 export class TotalsDatatableComponent implements OnChanges {
   @ViewChild(DatatableComponent) table!: DatatableComponent;
-  @Input() todayTotals: any;
-  @Input() yesterdayTotals: any;
+  @Input() todayTotals!: ITotals[];
+  @Input() yesterdayTotals!: ITotals[];
 
-  rows: any[] = [];
-  temp: any[] = [];
+  rows: IDatatable[] = [];
+  temp: IDatatable[] = [];
   columns = [{ prop: 'metrics' }, { name: 'Yesterday' }, { name: 'Today' }];
   removedItems = ['updated', 'country', 'countryInfo', 'continent'];
 
@@ -21,24 +23,13 @@ export class TotalsDatatableComponent implements OnChanges {
 
   ngOnChanges(): void {
     this.rows = this.todayTotals
-      .filter(({ label }: any) => !this.removedItems.includes(label))
-      .map(({ label, value }: any) => {
+      .filter(({ label }: ITotals) => !this.removedItems.includes(label))
+      .map(({ label, value }: ITotals) => {
         return {
           metrics: capitalizeString(label.split(/(?=[A-Z])/).join(' ')),
           today: value,
-          yesterday: this.yesterdayTotals.find((item: any) => item.label === label).value
+          yesterday: this.yesterdayTotals.find((item: ITotals) => item.label === label)?.value || null
         }
       })
-  }
-
-  updateFilter(event: any) {
-    const val = event.target.value.toLowerCase();
-
-    const temp = this.temp.filter(function (d) {
-      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
-    });
-
-    this.rows = temp;
-    this.table.offset = 0;
   }
 }

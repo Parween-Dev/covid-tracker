@@ -2,6 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { catchError, combineLatest, of } from 'rxjs';
 import { SubSink } from 'subsink';
 import { countryList } from '../_constants/country-list';
+import { ICountryStats } from '../_interface/country-stats.interface';
+import { ITotals } from '../_interface/totals.interface';
+import { IWorldStats } from '../_interface/world-stats.interface';
 import { CovidStatsServices } from '../_services/covid-stats.service';
 
 @Component({
@@ -10,8 +13,8 @@ import { CovidStatsServices } from '../_services/covid-stats.service';
   styleUrls: ['./world-stats.component.scss']
 })
 export class WorldStatsComponent implements OnInit, OnDestroy {
-  public todayTotals: any = [];
-  public yesterdayTotals: any = [];
+  public todayTotals: ITotals[] = [];
+  public yesterdayTotals: ITotals[] = [];
   public currentCountry: string = '';
   public loading = true;
   public totalsByCountry: any[] = [];
@@ -59,7 +62,7 @@ export class WorldStatsComponent implements OnInit, OnDestroy {
     });
   }
 
-  convertObjectToArray = (data: any) => {
+  convertObjectToArray = (data: IWorldStats) => {
     return Object.entries(data)
       .filter(([key]) => !this.removedItems.includes(key))
       .map(([key, value]) => {
