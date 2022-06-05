@@ -1,1 +1,38 @@
-<p>world stats works!</p>
+<div *ngIf="!loading">
+  <h1 class="text-center mt-5">Covid-19 World Statistics</h1>
+
+  <app-totals-widgets
+    *ngIf="todayTotals.length"
+    [todayTotals]="todayTotals"
+    [yesterdayTotals]="yesterdayTotals"
+    columnClasses="col-xl-3 col-sm-6 col-12 my-2">
+  </app-totals-widgets>
+
+  <div class="container-fluid row chart-container">
+    <div class="col-xl-6 col-sm-12 col-12 my-2">
+      <app-pie-chart
+        *ngIf="todayTotals.length"
+        [chartLabel]="'Cases Distribution'"
+        [todayTotals]="todayTotals"
+        ></app-pie-chart>
+    </div>
+    <div class=" col-xl-6 col-sm-12 col-12 my-2">
+      <app-bar-chart
+        *ngIf="todayTotals.length && yesterdayTotals.length"
+        [chartLabel]="'Today vs Yesterday Cases'"
+        [todayTotals]="todayTotals"
+        [yesterdayTotals]="yesterdayTotals">
+      </app-bar-chart>
+    </div>
+  </div>
+
+  <h3 class="text-center mt-5">Statistics based on Country</h3>
+  <p class="text-center">Click on a country name to view more data</p>
+  <div class="container-fluid row chart-container my-5">
+    <app-world-datatable
+      *ngIf="totalsByCountry.length"
+      [totalsByCountry]="totalsByCountry">
+    </app-world-datatable>
+  </div>
+</div>
+<app-loading-icon *ngIf="loading"></app-loading-icon>

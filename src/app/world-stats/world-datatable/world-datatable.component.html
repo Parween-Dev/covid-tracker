@@ -1,0 +1,67 @@
+<div>
+  <ngx-datatable
+    #table
+    class="bootstrap ngx-datatable"
+    [rows]="rows"
+    [columns]="columns"
+    fxFlex="auto"
+    [columnMode]="'force'"
+    [scrollbarH]="true"
+    [headerHeight]="40"
+    [footerHeight]="50"
+    rowHeight="auto"
+    [count]="tableData.rowCount"
+    [limit]="tableData.limit"
+    [sorts]="tableData.sorts"
+    [offset]="tableData.offset"
+  >
+    <ngx-datatable-column name="Country">
+      <ng-template ngx-datatable-cell-template let-row="row">
+        <a [routerLink]="['/countries/' + row['country']]">{{ row['country'] }}</a>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ng-container *ngFor="let column of columns">
+      <ngx-datatable-column [name]="column.name" *ngIf="column.name !== 'Country'">
+        <ng-template ngx-datatable-cell-template let-row="row">
+          <span>
+            {{ row[formatString(column.name)] | number }}
+          </span>
+        </ng-template>
+      </ngx-datatable-column>
+    </ng-container>
+
+    <ngx-datatable-footer>
+      <ng-template
+        ngx-datatable-footer-template
+        let-rowCount="rowCount"
+        let-pageSize="pageSize"
+        let-selectedCount="selectedCount"
+        let-curPage="curPage"
+        let-offset="offset"
+      >
+        <div class="page-indicator" *ngIf="curPage * pageSize - pageSize + 1 < rowCount">
+          Showing {{ curPage * pageSize - pageSize + 1 }} - {{ curPage * pageSize > rowCount ? rowCount : curPage * pageSize }} of
+          {{ rowCount }}
+        </div>
+        <!-- Only show if theres only one item of the current page-->
+        <div class="page-indicator" *ngIf="curPage * pageSize - pageSize + 1 === rowCount">
+          Showing {{ curPage * pageSize - pageSize + 1 }} of {{ rowCount }}
+        </div>
+
+        <datatable-pager
+          [pagerLeftArrowIcon]="'feather ft-chevrons-left'"
+          [pagerRightArrowIcon]="'feather ft-chevrons-right'"
+          [pagerPreviousIcon]="'feather ft-chevrons-left'"
+          [pagerNextIcon]="'feather ft-chevrons-right'"
+          [page]="curPage"
+          [size]="pageSize"
+          [count]="rowCount"
+          [hidden]="!(rowCount / pageSize > 1)"
+          (change)="table.onFooterPage($event)"
+        >
+        </datatable-pager>
+      </ng-template>
+    </ngx-datatable-footer>
+  </ngx-datatable>
+</div>

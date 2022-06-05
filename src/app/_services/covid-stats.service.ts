@@ -16,4 +16,8 @@ export class CovidStatsServices {
   public getWorldTotals(day: 'yesterday' | 'twoDaysAgo'): Observable<any> {
     return this.http.get<any>(`${this.apiURL}/v3/covid-19/all?${day}=true`);
   }
+
+  public getWorldMapData(): Observable<any> {
+    return this.http.get<any>(environment.worldMapData);
+  }
 }
