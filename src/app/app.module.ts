@@ -33,8 +33,7 @@ import { NgxDatatableFooterModule } from 'ngx-datatable-footer';
     HomeModule,
     TotalsWidgetModule,
     LoadingIconModule,
-    HighchartsChartModule,
-    NgxDatatableFooterModule
+    HighchartsChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
