@@ -20,6 +20,7 @@ export class CountryStatsComponent implements OnInit, OnDestroy {
   public error: boolean = false;
 
   private subs = new SubSink;
+  private screenWidth: number = window.innerWidth;
 
   constructor(
     private covidStatsService: CovidStatsServices,
@@ -34,10 +35,15 @@ export class CountryStatsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.covidStatsService.getNews().subscribe(
-      data => this.newsList = data,
-      () => this.error = true
-    );
+    if (this.screenWidth > 1200) {
+      this.subs.add(
+        this.covidStatsService.getNews().subscribe(
+          data => this.newsList = data,
+          () => this.error = true
+        )
+      );
+    }
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 

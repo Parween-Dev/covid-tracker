@@ -22,3 +22,17 @@
 a {
   text-decoration: none;
 }
+
+@media (max-width: 600px) {
+  :host ::ng-deep .ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li {
+    margin: 0 !important;
+  }
+
+  .page-indicator {
+    display: none !important;
+  }
+
+  :host ::ng-deep datatable-pager ul {
+    display: flex !important;
+  }
+}
