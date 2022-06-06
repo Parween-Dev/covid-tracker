@@ -21,7 +21,7 @@ export class WorldDatatableComponent implements OnInit {
   public tableData = {
     rowCount: 0,
     limit: 10,
-    sorts: [{ prop: 'country', dir: 'asc' }],
+    sorts: [{ prop: 'cases', dir: 'desc' }],
     offset: 0,
   };
 
