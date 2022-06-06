@@ -3,6 +3,7 @@ import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { IDatatable } from 'src/app/_interface/datatable.interface';
 import { ITotals } from 'src/app/_interface/totals.interface';
 import { capitalizeString } from 'src/app/_libraries/capitalize-string';
+import { thousandsSeparator } from 'src/app/_libraries/thousands-separator';
 
 @Component({
   selector: 'app-totals-datatable',
@@ -25,11 +26,21 @@ export class TotalsDatatableComponent implements OnChanges {
     this.rows = this.todayTotals
       .filter(({ label }: ITotals) => !this.removedItems.includes(label))
       .map(({ label, value }: ITotals) => {
+        const yesterdayValue = this.yesterdayTotals.find((item: ITotals) => item.label === label)?.value || 0;
+
         return {
           metrics: capitalizeString(label.split(/(?=[A-Z])/).join(' ')),
-          today: value,
-          yesterday: this.yesterdayTotals.find((item: ITotals) => item.label === label)?.value || null
+          today: this.separateNumberByThousand(value),
+          yesterday: this.separateNumberByThousand(yesterdayValue)
         }
       })
+  }
+
+  separateNumberByThousand = (value: string | number) => {
+    if (typeof value !== 'number' || value == null || value === undefined) {
+      return value;
+    }
+
+    return thousandsSeparator(value)
   }
 }
